@@ -2,11 +2,21 @@ import ProfileForm from '@/components/forms/profile-form'
 import React from 'react'
 import ProfilePicture from './_components/profile-picture'
 import { db } from '@/lib/db'
+import { currentUser } from '@clerk/nextjs'
 
 type Props = {}
 
-const Settings = (props: Props) => {
-  
+const Settings = async(props: Props) => {
+  const authUser = await currentUser()
+  if (!authUser) return null
+
+
+const user = await db.user.findUnique({ 
+  where: {
+    clerkId: authUser.id,
+  },
+})
+
   const removeProfileImage = async () => {
     'use server'
     const response = await db.user.update({
@@ -18,7 +28,38 @@ const Settings = (props: Props) => {
       },
     })
     return response
+
   }
+
+
+  const uploadProfileImage = async (image: string) => {
+    'use server'
+    const response = await db.user.update({
+      where: {
+        clerkId: authUser.id,
+      },
+      data: {
+        profileImage: image,
+      },
+    })
+    return response
+  }
+
+  const updateUserInfo = async (data: any) => {
+    'use server'
+    const updateUser = await db.user.update({
+      where: {
+        clerkId: authUser.id,
+      },
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+      },
+    })
+  } 
+
   return (
     <div className="w-full min-h-screen">
       <div className="flex flex-col gap-4 ml-[80px]"> {/* Add margin to account for sidebar */}
@@ -32,10 +73,12 @@ const Settings = (props: Props) => {
               Add or update your information
             </p>
           </div>
-          {/* <ProfilePicture onDelete={removeProfileImage}
+          <ProfilePicture 
+          onDelete={removeProfileImage}
           userImage={user?.profileImage || ''}
-          onUpload={uploadProfileImage} */}
-        {/* /> */}
+          onUpload={uploadProfileImage} 
+         />
+         <ProfileForm />
           
         </div>
       </div>
