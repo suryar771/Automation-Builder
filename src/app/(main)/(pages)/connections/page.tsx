@@ -24,9 +24,10 @@ const Connections = (props: Props) => {
               key={connection.title}
               description={connection.description}
               title={connection.title}
-            //   icon={connection.image}
-            //   type={connection.title}
-            //   connected={connections}
+              icon={connection.image}
+              type={connection.title}
+              connected={connection}
+            
             />
           ))}
         </section>
