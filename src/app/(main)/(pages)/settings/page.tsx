@@ -45,19 +45,17 @@ const user = await db.user.findUnique({
     return response
   }
 
-  const updateUserInfo = async (data: any) => {
+  const updateUserInfo = async (name: string) => {
     'use server'
     const updateUser = await db.user.update({
       where: {
         clerkId: authUser.id,
       },
       data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        address: data.address,
+        name,
       },
     })
+    return updateUser
   } 
 
   return (
@@ -78,7 +76,10 @@ const user = await db.user.findUnique({
           userImage={user?.profileImage || ''}
           onUpload={uploadProfileImage} 
          />
-         <ProfileForm />
+         <ProfileForm 
+         user={user}
+         onUpdate={updateUserInfo}
+         />
           
         </div>
       </div>
