@@ -1,7 +1,7 @@
 'use client'
 
 import Workflowform from '@/components/forms/workflow-form'
-import CustomModal from '@/components/global/custom-model'
+import CustomModal from '@/components/global/custom-modal'
 import { Button } from '@/components/ui/button'
 import { useBilling } from '@/providers/billing-provider'
 import { useModal } from '@/providers/modal-providers'
@@ -12,7 +12,7 @@ type Props = {}
 
 const WorkflowButton = (props: Props) => {
   const { setOpen, setClose } = useModal()
-  //const { credits } = useBilling()
+  const { credits } = useBilling()
 
   const handleClick = () => {
     setOpen(
@@ -28,13 +28,13 @@ const WorkflowButton = (props: Props) => {
   return (
     <Button
       size={'icon'}
-      // {...(credits !== '0'
-      //   ? {
-            onClick={handleClick}
-    //       }
-    //     : {
-    //         disabled: true,
-    //       })}
+          {...(credits !== '0'
+            ? {
+                  onClick: handleClick,
+                }
+              : {
+                  disabled: true,
+                })}
      >
       <Plus />
     </Button>
