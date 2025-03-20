@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from '@clerk/nextjs'
 import React from 'react'; // Add React import
 import ModalProvider from "@/providers/modal-providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
           >
             <ModalProvider>
             {children}
+            <Toaster/>
 
               </ModalProvider>
           </ThemeProvider>
