@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { ConnectionProviderProps } from '@/providers/connections-providers'
+
 export const EditUserProfileSchema = z.object({
   email: z.string().email('Required'),
   name: z.string().min(1, 'Required'),
@@ -51,7 +52,7 @@ export type EditorNodeType = {
   }
   data: EditorCanvasCardType
 }
-export type EditorNode = EditorNodeType
+ export type EditorNode = EditorNodeType
 export type EditorActions =
   | {
       type: 'LOAD_DATA'

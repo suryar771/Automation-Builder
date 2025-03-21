@@ -23,8 +23,8 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { useModal } from '@/providers/modal-providers'
 import { onCreateWorkflow } from '@/app/(main)/(pages)/workflows/_actions/workflow-connections'
+import { useModal } from '@/providers/modal-provider'
 
 type Props = {
   title?: string
@@ -32,7 +32,7 @@ type Props = {
 }
 
 const Workflowform = ({ subTitle, title }: Props) => {
-  const { setClose } = useModal()
+ // const { setClose } = useModall()
   const form = useForm<z.infer<typeof WorkflowFormSchema>>({
     mode: 'onChange',
     resolver: zodResolver(WorkflowFormSchema),
@@ -44,7 +44,7 @@ const Workflowform = ({ subTitle, title }: Props) => {
 
   const isLoading = form.formState.isLoading
   const router = useRouter()
-  const handleSubmit =() => {}
+  const handleSubmit = ()=>{}
 
   // const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
   //   const workflow = await onCreateWorkflow(values.name, values.description)
@@ -97,7 +97,7 @@ const Workflowform = ({ subTitle, title }: Props) => {
                     <Input
                       placeholder="Description"
                       {...field}
-                    />ß
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -110,7 +110,7 @@ const Workflowform = ({ subTitle, title }: Props) => {
             >
               {isLoading ? (
                 <>
-             ß     <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving
                 </>
               ) : (
                 'Save Settings'
@@ -120,7 +120,6 @@ const Workflowform = ({ subTitle, title }: Props) => {
         </Form>
       </CardContent>
     </Card>
-   
   )
 }
 

@@ -7,13 +7,13 @@ type Props = {}
 
 const Page = (props: Props) => {
   return (
-    <div className='h-full'>
-        <EditorProvider>
-          <ConnectionsProvider>
-           <EditorCanvas/>  
-          </ConnectionsProvider>
-        </EditorProvider>
-                </div>
+    <div className='h-full mx-[80px]'>
+    <EditorProvider>
+    <ConnectionsProvider>
+       <EditorCanvas/>
+    </ConnectionsProvider>
+    </EditorProvider>
+        </div>
   )
 }
 
