@@ -41,15 +41,15 @@ export const onSlackConnect = async (
   }
 }
 
-// export const getSlackConnection = async () => {
-//   const user = await currentUser()
-//   if (user) {
-//     return await db.slack.findFirst({
-//       where: { userId: user.id },
-//     })
-//   }
-//   return null
-// }
+export const getSlackConnection = async () => {
+  const user = await currentUser()
+  if (user) {
+    return await db.slack.findFirst({
+      where: { userId: user.id },
+    })
+  }
+  return null
+}
 
 // export async function listBotChannels(
 //   slackAccessToken: string

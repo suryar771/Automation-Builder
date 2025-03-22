@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import {
+  onConnections,
   onDragStart,
 } from '@/lib/editor-utils'
 import EditorCanvasIconHelper from './editor-canvas-card-icon-helper'
@@ -34,12 +35,12 @@ type Props = {
 const EditorCanvasSidebar = ({ nodes }: Props) => {
   const { state } = useEditor()
   const { nodeConnection } = useNodeConnections()
-//   const { googleFile, setSlackChannels } = useFuzzieStore()
-//   useEffect(() => {
-//     if (state) {
-//       onConnections(nodeConnection, state, googleFile)
-//     }
-//   }, [state])
+  const { googleFile, setSlackChannels } = useFuzzieStore()
+  useEffect(() => {
+    if (state) {
+      onConnections(nodeConnection, state, googleFile)
+    }
+  }, [state])
 
 //   useEffect(() => {
 //     if (nodeConnection.slackNode.slackAccessToken) {

@@ -49,30 +49,30 @@ export const onNotionConnect = async (
     }
   }
 }
-// export const getNotionConnection = async () => {
-//   const user = await currentUser()
-//   if (user) {
-//     const connection = await db.notion.findFirst({
-//       where: {
-//         userId: user.id,
-//       },
-//     })
-//     if (connection) {
-//       return connection
-//     }
-//   }
-// }
+export const getNotionConnection = async () => {
+  const user = await currentUser()
+  if (user) {
+    const connection = await db.notion.findFirst({
+      where: {
+        userId: user.id,
+      },
+    })
+    if (connection) {
+      return connection
+    }
+  }
+}
 
-// export const getNotionDatabase = async (
-//   databaseId: string,
-//   accessToken: string
-// ) => {
-//   const notion = new Client({
-//     auth: accessToken,
-//   })
-//   const response = await notion.databases.retrieve({ database_id: databaseId })
-//   return response
-// }
+export const getNotionDatabase = async (
+  databaseId: string,
+  accessToken: string
+) => {
+  const notion = new Client({
+    auth: accessToken,
+  })
+  const response = await notion.databases.retrieve({ database_id: databaseId })
+  return response
+}
 
 // export const onCreateNewPageInDatabase = async (
 //   databaseId: string,
