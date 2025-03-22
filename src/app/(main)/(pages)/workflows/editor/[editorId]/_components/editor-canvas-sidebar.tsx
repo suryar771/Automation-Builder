@@ -16,6 +16,7 @@ import {
 import {
   onConnections,
   onDragStart,
+  fetchBotSlackChannels,
 } from '@/lib/editor-utils'
 import EditorCanvasIconHelper from './editor-canvas-card-icon-helper'
 import {
@@ -42,14 +43,14 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
     }
   }, [state])
 
-//   useEffect(() => {
-//     if (nodeConnection.slackNode.slackAccessToken) {
-//       fetchBotSlackChannels(
-//         nodeConnection.slackNode.slackAccessToken,
-//         setSlackChannels
-//       )
-//     }
-//   }, [nodeConnection])
+  useEffect(() => {
+    if (nodeConnection.slackNode.slackAccessToken) {
+      fetchBotSlackChannels(
+        nodeConnection.slackNode.slackAccessToken,
+        setSlackChannels
+      )
+    }
+  }, [nodeConnection])
 
   return (
     <aside>

@@ -4,7 +4,8 @@ import { EditorState } from "@/providers/editor-provider"
 import { getDiscordConnectionUrl } from "@/app/(main)/(pages)/connections/_actions/discord-connections"
 import { getNotionConnection, getNotionDatabase } from "@/app/(main)/(pages)/connections/_actions/notion-connection"
 import { getSlackConnection } from "@/app/(main)/(pages)/connections/_actions/slack-connection"
-
+import { Option } from "@/components/ui/multiple-selector"
+import { listBotChannels } from "@/app/(main)/(pages)/connections/_actions/slack-connection"
 export const onDragStart = (
     event: any,
     nodeType: EditorCanvasTypes
@@ -133,4 +134,22 @@ export const onAddTemplateDiscord = (
         })
       }
     }
+
   }
+    
+    
+  export const fetchBotSlackChannels = async (
+    token: string,
+    setSlackChannels: (slackChannels: Option[]) => void
+  ) => {
+    await listBotChannels(token)?.then((channels) => setSlackChannels(channels))
+  }
+  // export const onNotionContent = (
+  //   nodeConnection: ConnectionProviderProps,
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   nodeConnection.setNotionNode((prev: any) => ({
+  //     ...prev,
+  //     content: event.target.value,
+  //   }))
+  // }
